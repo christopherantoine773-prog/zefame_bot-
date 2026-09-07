@@ -20,14 +20,11 @@ def home():
 @app.route("/run")
 def trigger_bot():
     try:
-        # Envoi de la requête au site
         response = requests.post(TARGET_URL, headers=HEADERS, data={"url": TIKTOK_LINK}, timeout=30)
-        
         if response.status_code == 200:
             return f"Succès ! Code réponse : {response.status_code}", 200
         else:
             return f"Le site a répondu avec le code : {response.status_code}", 400
-            
     except Exception as e:
         return f"Erreur technique : {str(e)}", 500
 
